@@ -8,6 +8,13 @@ const path      = require('path');
 const connectDB = require('./config/db');
 
 dotenv.config();
+
+// ── Startup diagnostics (remove after confirming deploy) ──
+console.log('🔍 ENV CHECK:');
+console.log('  MONGODB_URI present:', !!process.env.MONGODB_URI);
+console.log('  NODE_ENV:', process.env.NODE_ENV);
+console.log('  PORT:', process.env.PORT);
+
 connectDB();
 
 const app = express();
