@@ -24,6 +24,9 @@ app.use('/api/projects', require('./routes/projects'));
 app.use('/api/tasks',    require('./routes/tasks'));
 app.use('/api/users',    require('./routes/users'));
 
+// ── Health check ──────────────────────────────────────────
+app.get('/health', (_req, res) => res.json({ status: 'ok' }));
+
 // ── Serve React build in production ───────────────────────
 if (process.env.NODE_ENV === 'production') {
   const distPath = path.join(__dirname, '..', 'frontend', 'dist');
@@ -33,8 +36,6 @@ if (process.env.NODE_ENV === 'production') {
   );
 }
 
-// ── Health check ──────────────────────────────────────────
-app.get('/health', (_req, res) => res.json({ status: 'ok' }));
-
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 Server on port ${PORT}`));
+
